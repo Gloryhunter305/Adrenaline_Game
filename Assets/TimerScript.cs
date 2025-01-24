@@ -8,7 +8,7 @@ public class TimerScript : MonoBehaviour
 
     [Header("Time Components")]
     private float timeRemaining;
-    private float maxTime = 40f;
+    private float maxTime = 10f;                //40f
     private bool timerRunning = false;
     private float timeMultipler = 1f;
 
@@ -93,6 +93,9 @@ public class TimerScript : MonoBehaviour
 
     public void GameOverScreen()
     {
+        //Test if these text will spawn again
+        mainTimerText.enabled = false;
+        playerTimerText.enabled = false;
         SceneManager.LoadScene("GameOverScreen");
     }
 
@@ -118,6 +121,8 @@ public class TimerScript : MonoBehaviour
 
     void StartTimer()
     {
+        mainTimerText.enabled = true;
+        playerTimerText.enabled = true;
         timerRunning = true;
         timeRemaining = maxTime;  
     }
@@ -134,3 +139,4 @@ public class TimerScript : MonoBehaviour
         selectedText.text = "Time Left: " + Mathf.Ceil(timeRemaining).ToString(); // Update text display
     }
 }
+//THIS NEEDS TO FIND PLAYER IN MAIN SCENE

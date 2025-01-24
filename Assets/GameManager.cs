@@ -166,3 +166,5 @@ public class GameManager : MonoBehaviour
         SpawnTargets();
     }
 }
+
+//THIS NEEDS TO FIND PLAYER IN MAIN SCENE

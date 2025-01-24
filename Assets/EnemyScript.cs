@@ -34,49 +34,49 @@ public class EnemyScript : MonoBehaviour
         targetSpawner = FindObjectOfType<GameManager>();
     }
 
-    void Update()
-    {
+    // void Update()
+    // {
         
-    }
+    // }
 
-    private void AimAtTarget(Vector2 direction)
-    {
-        float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
-        Quaternion targetRotation = Quaternion.Euler(new Vector3(0, 0, angle));
+    // private void AimAtTarget(Vector2 direction)
+    // {
+    //     float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+    //     Quaternion targetRotation = Quaternion.Euler(new Vector3(0, 0, angle));
 
-        // Smoothly rotate towards the player
-        transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
+    //     // Smoothly rotate towards the player
+    //     transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
 
-    }
+    // }
 
-    private bool CanSeePlayer(Vector2 direction)
-    {
-        RaycastHit2D hit = Physics2D.Raycast(transform.position, direction, shootingRange);
+    // private bool CanSeePlayer(Vector2 direction)
+    // {
+    //     RaycastHit2D hit = Physics2D.Raycast(transform.position, direction, shootingRange);
         
-        // Check if the raycast hit something
-        if (hit.collider != null)
-        {
-            // If the hit object is the player, return true
-            if (hit.collider.transform == target)
-            {
-                return true;
-            }
-        }
+    //     // Check if the raycast hit something
+    //     if (hit.collider != null)
+    //     {
+    //         // If the hit object is the player, return true
+    //         if (hit.collider.transform == target)
+    //         {
+    //             return true;
+    //         }
+    //     }
         
-        // If the raycast hit something else, return false
-        return false;
-    }
+    //     // If the raycast hit something else, return false
+    //     return false;
+    // }
 
-    private void ShootAtPlayer()
-    {
-       timer += Time.deltaTime;
+    // private void ShootAtPlayer()
+    // {
+    //    timer += Time.deltaTime;
 
-       if (timer > 2)
-       {
-            timer = 0;
-            Instantiate(bulletPrefab, transform.position, Quaternion.identity);
-       }
-    }
+    //    if (timer > 2)
+    //    {
+    //         timer = 0;
+    //         Instantiate(bulletPrefab, transform.position, Quaternion.identity);
+    //    }
+    // }
 
     public void WasShot()
     {  

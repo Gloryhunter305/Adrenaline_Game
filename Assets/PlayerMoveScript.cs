@@ -1,9 +1,10 @@
-using Unity.PlasticSCM.Editor.WebApi;
 using UnityEngine;
+using System.Collections;
+using UnityEngine.SceneManagement;
 
 public class PlayerMoveScript : MonoBehaviour
 {
-    public static PlayerMoveScript Player;
+    public static PlayerMoveScript instance {get; private set;}
 
     [Header("Camera_Identification")]
     public Camera mainCam;
@@ -27,10 +28,6 @@ public class PlayerMoveScript : MonoBehaviour
     public TimerScript timer;
     public ProjectileScript projectile;
 
-    private void Awake()
-    {
-        Player = this;
-    }
 
     void Start()
     {
@@ -40,13 +37,13 @@ public class PlayerMoveScript : MonoBehaviour
 
     // Update is called once per frame
     void Update()
-    {
+    {       
         // Check if the player camera is active
         if (playerCam.enabled)
         {
             //UI Functions
             //UIStaminaBar();
-            
+                
 
             //Player Functions
             MovePlayer();

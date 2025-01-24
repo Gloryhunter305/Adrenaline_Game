@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class CameraSwitch : MonoBehaviour
 {
@@ -13,6 +14,7 @@ public class CameraSwitch : MonoBehaviour
         {
             instance = this;
             DontDestroyOnLoad(gameObject); // Make this object persistent
+            DontDestroyOnLoad(mainCamera);
         }
         else
         {
@@ -28,12 +30,12 @@ public class CameraSwitch : MonoBehaviour
     }
 
     private void Update()
-    {
+    {       
         // Check for input to switch cameras (e.g., pressing the "C" key)
         if (Input.GetKeyDown(KeyCode.C))
         {
             SwitchCameras();
-        }
+        }  
     }
 
     private void SwitchCameras()
