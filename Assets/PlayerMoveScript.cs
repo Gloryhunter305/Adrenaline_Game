@@ -10,8 +10,8 @@ public class PlayerMoveScript : MonoBehaviour
 
     [Header("Player Components")]
     public Rigidbody2D RB;
-    public float normalSpeed, fastSpeed;
-    public float playerNoNoSquare = 2f;
+    public float normalSpeed = 5, fastSpeed;
+    public float playerNoNoSquare = 3f;
     public ProjectileScript BulletPrefab;
 
     // [Header("Stamina Component")]
@@ -49,7 +49,7 @@ public class PlayerMoveScript : MonoBehaviour
         }
         else
         {
-            RB.velocity = Vector2.zero;
+            RB.linearVelocity = Vector2.zero;
         }
     }
 
@@ -102,7 +102,7 @@ public class PlayerMoveScript : MonoBehaviour
             vel.Normalize();
         }
             
-        RB.velocity = vel * normalSpeed;
+        RB.linearVelocity = vel * normalSpeed;
     }
 
     private void PlayerShoot()
@@ -128,6 +128,11 @@ public class PlayerMoveScript : MonoBehaviour
             enemy.WasShot();
             timer.IncreaseTime(1);  //Didn't create a variable for this...
         }
+    }
+
+    public void ResetPlayer()
+    {
+        normalSpeed = 5f;
     }
 
     // public void ReduceStamina(float amount)

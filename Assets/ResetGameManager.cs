@@ -45,5 +45,11 @@ public class ResetGameManager : MonoBehaviour
         {
             timer.RevertTimer();
         }
+
+        var player = FindFirstObjectByType<PlayerMoveScript>();
+        if (player != null)
+        {
+            player.ResetPlayer();
+        }
     }
 }

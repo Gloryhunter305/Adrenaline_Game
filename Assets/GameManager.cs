@@ -111,7 +111,7 @@ public class GameManager : MonoBehaviour
             //Increase level Difficulty
             level++;
             Debug.Log("Level: " + level);
-            //Every 5 levels increase speed of player, projectiles etc.
+            //Every 3 levels increase speed of player, projectiles etc.
             if (level % 3 == 0)
             {
                 timer.IncreaseFlowOfTime(timeMultipler);

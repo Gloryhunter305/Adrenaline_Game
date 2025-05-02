@@ -31,7 +31,7 @@ public class EnemyScript : MonoBehaviour
         layerMask = LayerMask.GetMask("Wall");
 
         //Enemy will interact with GameManager
-        targetSpawner = FindObjectOfType<GameManager>();
+        targetSpawner = FindFirstObjectByType<GameManager>();
     }
 
     // void Update()

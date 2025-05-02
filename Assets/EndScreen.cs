@@ -18,8 +18,6 @@ public class EndScreen : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            //GameManager.instance.ResetScore();
-            //TimerScript.instance.ResetTimer();
             SceneManager.LoadScene("MainScene");
         }
     }

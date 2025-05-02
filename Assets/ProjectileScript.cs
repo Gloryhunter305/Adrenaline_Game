@@ -23,7 +23,7 @@ public class ProjectileScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        RB.velocity = transform.right * bulletSpeed;
+        RB.linearVelocity = transform.right * bulletSpeed;
     }
 
 
