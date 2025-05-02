@@ -1,12 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
-using System.ComponentModel.Design;
-using UnityEditor;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    public static GameManager instance {get; private set;}
 
     [Header("Moving to New Spot Variables")]
     public LayerMask layerMask;     //Scans for wall layer
@@ -15,7 +12,7 @@ public class GameManager : MonoBehaviour
 
     [Header("SpawnManager Variables")]
     public GameObject enemyPrefab;
-    public int numberOfTargets = 6;     //Could use this for something...
+    public int numberOfTargets = 6; 
     public int targetsRemaining;
 
     [Header("Private variables")]
@@ -24,29 +21,12 @@ public class GameManager : MonoBehaviour
 
     [Header("Scoring & Reward Components")]
     public int level = 1;
-    public int targetAddTime = 1, levelClearAddTime = 5;
+    public int TargetAddTime = 2, LevelClearAddTime = 10;
     public float timeMultipler = 1.1f;
-
-    // public GameObject laserBeamPrefab;
-    // private int chance = 8;
-
 
     //Other Scripts it is interacting with
     public TimerScript timer;
 
-    private void Awake()
-    {
-        // Ensure there is only one instance of TimerManager
-        if (instance == null)
-        {
-            instance = this;
-            DontDestroyOnLoad(gameObject); // Make this object persistent
-        }
-        else
-        {
-            Destroy(gameObject); // Destroy duplicate
-        }
-    }
 
     // Start is called before the first frame update
     void Start()
@@ -62,11 +42,6 @@ public class GameManager : MonoBehaviour
         SpawnTargets();
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 
     void SpawnTargets()
     {
@@ -126,7 +101,7 @@ public class GameManager : MonoBehaviour
     public void TargetHit(GameObject enemy)
     {
         activeTargets.Remove(enemy);
-        timer.IncreaseTime(targetAddTime);
+        timer.IncreaseTime(TargetAddTime);
 
         if (activeTargets.Count == 0)
         {
@@ -142,23 +117,18 @@ public class GameManager : MonoBehaviour
                 timer.IncreaseFlowOfTime(timeMultipler);
                 //chance++;
             }
-             
-            // //Player recieves reward (Laser Beam)
-            // if (chance > Random.Range(0, 9))
-            // {
-            //     Instantiate(laserBeamPrefab, player.transform.position + new Vector3(1.5f, 0, 0), Quaternion.identity);
-            // }
-            
         
-            timer.IncreaseTime(levelClearAddTime);
+            timer.IncreaseTime(LevelClearAddTime);
             StartCoroutine(RespawnTargets());
         }
     }
 
-    public void ResetScore()
+    public void ResetGame()
     {
         level = 1;
+        activeTargets.Clear();
     }
+
     private IEnumerator RespawnTargets()
     {
         yield return new WaitForSeconds(respawnDelay);

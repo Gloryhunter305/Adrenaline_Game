@@ -10,7 +10,7 @@ public class EndScreen : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        survivedLevelsText.text = "You survived Till...  Level: " + GameManager.instance.level;
+        survivedLevelsText.text = "You survived Till...  Level: " + ResetGameManager.instance.levelCount;
     }
 
     // Update is called once per frame

@@ -4,8 +4,6 @@ using UnityEngine.SceneManagement;
 
 public class TimerScript : MonoBehaviour
 {
-    public static TimerScript instance {get; private set;}
-
     [Header("Time Components")]
     private float timeRemaining;
     private float maxTime = 10f;                //40f
@@ -15,24 +13,11 @@ public class TimerScript : MonoBehaviour
     [Header("Timers In Scene")]
     public TextMeshPro mainTimerText;
     public TextMeshPro playerTimerText;
+    public GameObject playerBackgroundPrefab;   //Nothing much just background contrast
 
 
     //Other Scripts it needs to interact with
     GameObject player;
-
-    private void Awake()
-    {
-        // Ensure there is only one instance of TimerManager
-        if (instance == null)
-        {
-            instance = this;
-            DontDestroyOnLoad(gameObject); // Make this object persistent
-        }
-        else
-        {
-            Destroy(gameObject); // Destroy duplicate
-        }
-    }
 
     // Start is called before the first frame update
     void Start()
@@ -67,6 +52,9 @@ public class TimerScript : MonoBehaviour
             }
             else
             {
+                //Before GameOverScreen, grab the player's level
+                ResetGameManager.instance.getLevel();
+
                 GameOverScreen();
             }
 
@@ -74,6 +62,7 @@ public class TimerScript : MonoBehaviour
             if (playerID.playerCam.enabled)
             {
                 playerTimerText.enabled = true;
+                playerBackgroundPrefab.SetActive(true);
                 mainTimerText.enabled = false;
             }
 
@@ -81,6 +70,7 @@ public class TimerScript : MonoBehaviour
             if (playerID.mainCam.enabled)
             {
                 playerTimerText.enabled = false;
+                playerBackgroundPrefab.SetActive(false);
                 mainTimerText.enabled = true;
             }
         }
@@ -127,7 +117,7 @@ public class TimerScript : MonoBehaviour
         timeRemaining = maxTime;  
     }
 
-    public void ResetTimer()
+    public void RevertTimer()
     {
         ResetFlowOfTime();
         ResetTimeRate();
@@ -139,4 +129,3 @@ public class TimerScript : MonoBehaviour
         selectedText.text = "Time Left: " + Mathf.Ceil(timeRemaining).ToString(); // Update text display
     }
 }
-//THIS NEEDS TO FIND PLAYER IN MAIN SCENE

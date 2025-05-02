@@ -4,8 +4,6 @@ using UnityEngine.SceneManagement;
 
 public class PlayerMoveScript : MonoBehaviour
 {
-    public static PlayerMoveScript instance {get; private set;}
-
     [Header("Camera_Identification")]
     public Camera mainCam;
     public Camera playerCam;
@@ -163,6 +161,4 @@ public class PlayerMoveScript : MonoBehaviour
         Gizmos.color = Color.yellow;
         Gizmos.DrawSphere(transform.position, playerNoNoSquare);
     }
-
-
 }
